@@ -62,7 +62,7 @@ const StatBox = ({ value, label }) => (
 
 // Progress Tracker Component - iframe compatible
 const ProgressTracker = ({ selections }) => {
-  const [position, setPosition] = useState({ top: 0 });
+  const [transformOffset, setTransformOffset] = useState(0);
   const trackerRef = useRef(null);
 
   const selectionCount = useMemo(() => {
@@ -76,9 +76,25 @@ const ProgressTracker = ({ selections }) => {
     const updatePosition = () => {
       const scrollY = window.scrollY || window.pageYOffset;
       const viewportHeight = window.innerHeight;
-      // Position it 24px from the bottom of the current viewport
-      const newTop = scrollY + viewportHeight - 280;
-      setPosition({ top: Math.max(100, newTop) });
+      const documentHeight = document.documentElement.scrollHeight;
+      const bottomMargin = 24;
+      
+      // Position tracker at bottom of document (bottom: 24px, position: absolute)
+      // Use transform to keep it at bottom of viewport as we scroll
+      // When at top of page: move tracker up to viewport bottom
+      // When at bottom of page: tracker naturally at viewport bottom (offset = 0)
+      const distanceFromBottom = documentHeight - viewportHeight - scrollY;
+      
+      // Calculate offset: move tracker up only if it would be below viewport
+      // When distanceFromBottom > bottomMargin: tracker is below viewport, move it up
+      // When distanceFromBottom <= bottomMargin: tracker is in viewport, no offset needed
+      const offset = -Math.max(0, distanceFromBottom - bottomMargin);
+      
+      // Clamp offset to prevent moving tracker above viewport top
+      const maxOffset = -(documentHeight - viewportHeight - bottomMargin);
+      const clampedOffset = Math.max(maxOffset, offset);
+      
+      setTransformOffset(clampedOffset);
     };
 
     updatePosition();
@@ -109,10 +125,11 @@ const ProgressTracker = ({ selections }) => {
       className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 w-64 hidden md:block"
       style={{
         position: 'absolute',
-        top: `${position.top}px`,
+        bottom: '24px',
         right: '24px',
         zIndex: 9999,
-        transition: 'top 0.15s ease-out',
+        transform: `translateY(${transformOffset}px)`,
+        willChange: 'transform',
       }}
     >
       <div className="text-sm font-semibold text-slate-700 mb-3">
