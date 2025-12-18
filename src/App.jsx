@@ -60,11 +60,8 @@ const StatBox = ({ value, label }) => (
   </div>
 );
 
-// Progress Tracker Component - iframe compatible
+// Progress Tracker Component - uses position: fixed for viewport-relative positioning
 const ProgressTracker = ({ selections }) => {
-  const [transformOffset, setTransformOffset] = useState(0);
-  const trackerRef = useRef(null);
-
   const selectionCount = useMemo(() => {
     const fields = ['primaryGoal', 'programType', 'audienceSize', 'matchingApproach', 'measurementFocus', 'timeline'];
     return fields.filter(field => selections[field]).length;
@@ -72,64 +69,14 @@ const ProgressTracker = ({ selections }) => {
 
   const progressPercent = (selectionCount / 6) * 100;
 
-  useEffect(() => {
-    const updatePosition = () => {
-      const scrollY = window.scrollY || window.pageYOffset;
-      const viewportHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const bottomMargin = 24;
-      
-      // Position tracker at bottom of document (bottom: 24px, position: absolute)
-      // Use transform to keep it at bottom of viewport as we scroll
-      // When at top of page: move tracker up to viewport bottom
-      // When at bottom of page: tracker naturally at viewport bottom (offset = 0)
-      const distanceFromBottom = documentHeight - viewportHeight - scrollY;
-      
-      // Calculate offset: move tracker up only if it would be below viewport
-      // When distanceFromBottom > bottomMargin: tracker is below viewport, move it up
-      // When distanceFromBottom <= bottomMargin: tracker is in viewport, no offset needed
-      const offset = -Math.max(0, distanceFromBottom - bottomMargin);
-      
-      // Clamp offset to prevent moving tracker above viewport top
-      const maxOffset = -(documentHeight - viewportHeight - bottomMargin);
-      const clampedOffset = Math.max(maxOffset, offset);
-      
-      setTransformOffset(clampedOffset);
-    };
-
-    updatePosition();
-    
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updatePosition();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', updatePosition, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updatePosition);
-    };
-  }, []);
-
   return (
     <div 
-      ref={trackerRef}
       className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 w-64 hidden md:block"
       style={{
-        position: 'absolute',
+        position: 'fixed',
         bottom: '24px',
         right: '24px',
         zIndex: 9999,
-        transform: `translateY(${transformOffset}px)`,
-        willChange: 'transform',
       }}
     >
       <div className="text-sm font-semibold text-slate-700 mb-3">
