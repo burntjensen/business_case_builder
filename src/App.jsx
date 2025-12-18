@@ -60,8 +60,11 @@ const StatBox = ({ value, label }) => (
   </div>
 );
 
-// Progress Tracker Component
+// Progress Tracker Component - iframe compatible
 const ProgressTracker = ({ selections }) => {
+  const [position, setPosition] = useState({ top: 0 });
+  const trackerRef = useRef(null);
+
   const selectionCount = useMemo(() => {
     const fields = ['primaryGoal', 'programType', 'audienceSize', 'matchingApproach', 'measurementFocus', 'timeline'];
     return fields.filter(field => selections[field]).length;
@@ -69,8 +72,49 @@ const ProgressTracker = ({ selections }) => {
 
   const progressPercent = (selectionCount / 6) * 100;
 
+  useEffect(() => {
+    const updatePosition = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const viewportHeight = window.innerHeight;
+      // Position it 24px from the bottom of the current viewport
+      const newTop = scrollY + viewportHeight - 280;
+      setPosition({ top: Math.max(100, newTop) });
+    };
+
+    updatePosition();
+    
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updatePosition();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updatePosition, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, []);
+
   return (
-    <div className="fixed bottom-6 right-6 bg-white rounded-xl shadow-lg border border-slate-200 p-4 max-w-xs hidden md:block z-50">
+    <div 
+      ref={trackerRef}
+      className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 w-64 hidden md:block"
+      style={{
+        position: 'absolute',
+        top: `${position.top}px`,
+        right: '24px',
+        zIndex: 9999,
+        transition: 'top 0.15s ease-out',
+      }}
+    >
       <div className="text-sm font-semibold text-slate-700 mb-3">
         Your Selections
       </div>
