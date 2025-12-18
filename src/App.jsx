@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 
 // Selection Card Component
 const SelectionCard = ({ field, value, label, description, selected, onSelect }) => (
