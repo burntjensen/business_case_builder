@@ -504,7 +504,6 @@ function BusinessCaseGuide() {
         onEmailChange={handleEmailChange}
         onSubmit={handleSubmit}
         secondaryLinks={[
-          { href: "https://www.togetherplatform.com/calculate-the-roi-of-mentorship", text: "Calculate your ROI now" },
           { href: "https://www.togetherplatform.com/", text: "Book a 15-min consultation" },
         ]}
       />

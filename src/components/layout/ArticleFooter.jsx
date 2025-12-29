@@ -14,7 +14,7 @@ const ArticleFooter = ({ children }) => (
           <div className="flex flex-wrap justify-center gap-2 md:gap-6 text-sm text-white/60">
             <span>Programs in 90+ countries</span>
             <span className="hidden md:inline">•</span>
-            <span>10,000+ participant programs</span>
+            <span>1M+ participant programs</span>
             <span className="hidden md:inline">•</span>
             <span>Average launch in 14 days</span>
           </div>

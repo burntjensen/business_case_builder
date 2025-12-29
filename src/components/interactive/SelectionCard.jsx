@@ -16,7 +16,7 @@ const SelectionCard = ({ field, value, label, description, selected, onSelect })
     className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${
       selected
         ? "border-brand-indigo bg-brand-yellow-soft"
-        : "border-brand-indigo/20 bg-white hover:border-brand-blue hover:bg-brand-yellow-soft/50"
+        : "border-brand-indigo/20 bg-white hover:border-brand-yellow hover:bg-brand-yellow-soft/50"
     }`}
     aria-pressed={selected}
   >
