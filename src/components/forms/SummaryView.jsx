@@ -7,6 +7,7 @@
  * @param {Object} nextSteps - { title, description } for what happens next
  * @param {function} onBack - Back button handler
  * @param {string} backText - Back button text
+ * @param {function} onDownloadPDF - Optional PDF download handler
  */
 const SummaryView = ({ 
   title, 
@@ -14,7 +15,8 @@ const SummaryView = ({
   items = [], 
   nextSteps,
   onBack,
-  backText = "← Back to article"
+  backText = "← Back to article",
+  onDownloadPDF
 }) => (
   <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -65,11 +67,35 @@ const SummaryView = ({
           </div>
         )}
         
+        {onDownloadPDF && (
+          <button
+            type="button"
+            onClick={onDownloadPDF}
+            className="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            Download PDF Summary
+          </button>
+        )}
+        
         {onBack && (
           <button
             type="button"
             onClick={onBack}
-            className="mt-6 text-emerald-600 hover:text-emerald-700 font-medium text-sm w-full text-center"
+            className="mt-4 text-emerald-600 hover:text-emerald-700 font-medium text-sm w-full text-center"
           >
             {backText}
           </button>

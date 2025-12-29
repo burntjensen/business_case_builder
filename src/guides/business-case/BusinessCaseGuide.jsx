@@ -10,6 +10,7 @@ import {
   SummaryView,
 } from '../../components';
 import { useArticleSelections } from '../../hooks';
+import { generatePDF } from '../../utils/generatePDF';
 
 // Icons for header badges
 const ClockIcon = () => (
@@ -111,6 +112,11 @@ function BusinessCaseGuide() {
     handleBack,
   } = useArticleSelections(INITIAL_SELECTIONS);
 
+  // Handle PDF download
+  const handleDownloadPDF = () => {
+    generatePDF(selections, 'mentorship-business-case.pdf');
+  };
+
   // Show summary view after submission
   if (selections.submitted) {
     return (
@@ -130,6 +136,7 @@ function BusinessCaseGuide() {
           title: "What happens next?",
           description: "Our team will review your selections and send you a customized proposal template and ROI projection within 24 hours."
         }}
+        onDownloadPDF={handleDownloadPDF}
         onBack={handleBack}
       />
     );
