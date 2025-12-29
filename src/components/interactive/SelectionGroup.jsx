@@ -21,14 +21,14 @@ const SelectionGroup = ({
   ariaLabel,
   columns = 2
 }) => (
-  <div className="bg-white rounded-2xl border border-slate-200 p-6 my-8 shadow-sm">
+  <div className="bg-white rounded-2xl border border-brand-indigo/20 p-6 my-8 shadow-sm">
     <div className="flex items-center gap-2 mb-4">
-      <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center">
-        <span className="text-emerald-600 text-xs font-bold">{number}</span>
+      <div className="w-6 h-6 rounded-full bg-brand-yellow flex items-center justify-center">
+        <span className="text-brand-indigo text-xs font-bold">{number}</span>
       </div>
-      <span className="font-semibold text-slate-700">Your Selection</span>
+      <span className="font-semibold text-brand-indigo">Your Selection</span>
     </div>
-    <p className="text-slate-800 font-medium mb-4">{question}</p>
+    <p className="text-brand-indigo font-medium mb-4">{question}</p>
     <div 
       className={`grid gap-3 ${columns === 2 ? 'md:grid-cols-2' : columns === 3 ? 'md:grid-cols-3' : 'grid-cols-1'}`} 
       role="group" 
@@ -50,4 +50,3 @@ const SelectionGroup = ({
 );
 
 export default SelectionGroup;
-

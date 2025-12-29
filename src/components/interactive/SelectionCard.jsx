@@ -15,15 +15,15 @@ const SelectionCard = ({ field, value, label, description, selected, onSelect })
     onClick={() => onSelect(field, value)}
     className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${
       selected
-        ? "border-emerald-600 bg-emerald-50"
-        : "border-slate-200 bg-white hover:border-emerald-300 hover:bg-emerald-50/50"
+        ? "border-brand-indigo bg-brand-yellow-soft"
+        : "border-brand-indigo/20 bg-white hover:border-brand-blue hover:bg-brand-yellow-soft/50"
     }`}
     aria-pressed={selected}
   >
     <div className="flex items-start gap-3">
       <div
         className={`w-5 h-5 rounded-full border-2 flex-shrink-0 mt-0.5 flex items-center justify-center ${
-          selected ? "border-emerald-600 bg-emerald-600" : "border-slate-300"
+          selected ? "border-brand-indigo bg-brand-indigo" : "border-brand-indigo/30"
         }`}
         aria-hidden="true"
       >
@@ -42,12 +42,11 @@ const SelectionCard = ({ field, value, label, description, selected, onSelect })
         )}
       </div>
       <div>
-        <div className="font-semibold text-slate-800">{label}</div>
-        <div className="text-sm text-slate-600 mt-1">{description}</div>
+        <div className="font-semibold text-brand-indigo">{label}</div>
+        <div className="text-sm text-brand-indigo/70 mt-1">{description}</div>
       </div>
     </div>
   </button>
 );
 
 export default SelectionCard;
-

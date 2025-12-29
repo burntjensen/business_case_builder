@@ -141,10 +141,18 @@ export const generatePDF = (selections, filename = 'business-case-summary.pdf') 
   const margin = 20;
   let yPosition = margin;
   
-  // Colors
-  const primaryColor = [16, 185, 129]; // emerald-500
-  const darkColor = [15, 23, 42]; // slate-900
-  const grayColor = [100, 116, 139]; // slate-500
+  // Brand Colors (RGB values)
+  const brandIndigo = [12, 27, 84]; // #0C1B54 - Dark Indigo
+  const brandYellow = [255, 164, 64]; // #FFA440 - Bold Yellow
+  const brandBlue = [0, 174, 239]; // #00AEEF - Vivid Blue
+  const brandGreen = [57, 128, 129]; // #398081 - Bold Green
+  const brandCream = [242, 240, 237]; // #F2F0ED - White Space
+  
+  // Aliases for compatibility
+  const primaryColor = brandIndigo;
+  const darkColor = brandIndigo;
+  const grayColor = [71, 85, 130]; // Lighter brand-indigo for secondary text
+  const accentColor = brandYellow;
   
   // Helper function to check if we need a new page
   const checkPageBreak = (requiredSpace = 20) => {
@@ -272,7 +280,7 @@ export const generatePDF = (selections, filename = 'business-case-summary.pdf') 
   // ROI Assumptions box
   checkPageBreak(35);
   doc.setDrawColor(...grayColor);
-  doc.setFillColor(248, 250, 252); // slate-50
+  doc.setFillColor(...brandCream); // brand-cream
   doc.roundedRect(margin, yPosition, pageWidth - 2 * margin, 30, 3, 3, 'FD');
   
   doc.setTextColor(...darkColor);
@@ -349,7 +357,7 @@ export const generatePDF = (selections, filename = 'business-case-summary.pdf') 
   
   // SUCCESS STORY
   checkPageBreak(45);
-  doc.setFillColor(240, 253, 244); // emerald-50
+  doc.setFillColor(255, 223, 176); // brand-yellow-soft (#FFDFB0)
   doc.roundedRect(margin, yPosition, pageWidth - 2 * margin, 40, 3, 3, 'F');
   
   doc.setTextColor(...primaryColor);

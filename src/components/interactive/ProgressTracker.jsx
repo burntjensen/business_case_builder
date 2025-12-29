@@ -15,7 +15,7 @@ const ProgressTracker = ({ selections, fields }) => {
 
   return (
     <div 
-      className="bg-white rounded-xl shadow-lg border border-slate-200 p-4 w-64 hidden md:block"
+      className="bg-white rounded-xl shadow-lg border border-brand-indigo/20 p-4 w-64 hidden md:block"
       style={{
         position: 'fixed',
         bottom: '48px',
@@ -23,18 +23,18 @@ const ProgressTracker = ({ selections, fields }) => {
         zIndex: 9999,
       }}
     >
-      <div className="text-sm font-semibold text-slate-700 mb-3">
+      <div className="text-sm font-semibold text-brand-indigo mb-3">
         Your Selections
       </div>
       <div className="space-y-2 text-sm">
         {fields.map(({ key, label }) => (
           <div key={key} className="flex justify-between">
-            <span className="text-slate-500">{label}</span>
+            <span className="text-brand-indigo/60">{label}</span>
             <span
               className={
                 selections[key]
-                  ? "text-emerald-600 font-medium"
-                  : "text-slate-300"
+                  ? "text-brand-green font-medium"
+                  : "text-brand-indigo/30"
               }
             >
               {selections[key] || "—"}
@@ -42,16 +42,16 @@ const ProgressTracker = ({ selections, fields }) => {
           </div>
         ))}
       </div>
-      <div className="mt-3 pt-3 border-t border-slate-100">
+      <div className="mt-3 pt-3 border-t border-brand-indigo/10">
         <div 
-          className="w-full bg-slate-100 rounded-full h-2" 
+          className="w-full bg-brand-indigo/10 rounded-full h-2" 
           role="progressbar" 
           aria-valuenow={progressPercent} 
           aria-valuemin="0" 
           aria-valuemax="100"
         >
           <div
-            className="bg-emerald-500 h-2 rounded-full transition-all duration-300"
+            className="bg-brand-yellow h-2 rounded-full transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
           ></div>
         </div>
@@ -61,4 +61,3 @@ const ProgressTracker = ({ selections, fields }) => {
 };
 
 export default ProgressTracker;
-

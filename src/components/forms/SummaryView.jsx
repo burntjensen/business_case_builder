@@ -18,12 +18,12 @@ const SummaryView = ({
   backText = "← Back to article",
   onDownloadPDF
 }) => (
-  <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+  <div className="min-h-screen bg-brand-cream">
     <div className="max-w-3xl mx-auto px-6 py-16">
-      <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
-        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+      <div className="bg-white rounded-2xl shadow-xl p-8 border border-brand-indigo/10">
+        <div className="w-16 h-16 bg-brand-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
           <svg
-            className="w-8 h-8 text-emerald-600"
+            className="w-8 h-8 text-brand-green"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -38,22 +38,22 @@ const SummaryView = ({
           </svg>
         </div>
         
-        <h2 className="text-2xl font-bold text-center text-slate-800 mb-4">
+        <h2 className="text-2xl font-bold text-center text-brand-indigo mb-4">
           {title}
         </h2>
         
         {description && (
-          <p className="text-slate-600 text-center mb-8">{description}</p>
+          <p className="text-brand-indigo/70 text-center mb-8">{description}</p>
         )}
         
-        <div className="space-y-4 bg-slate-50 rounded-xl p-6">
+        <div className="space-y-4 bg-brand-cream rounded-xl p-6">
           {items.map(({ label, value }, index) => (
             <div 
               key={label} 
-              className={`flex justify-between py-2 ${index < items.length - 1 ? 'border-b border-slate-200' : ''}`}
+              className={`flex justify-between py-2 ${index < items.length - 1 ? 'border-b border-brand-indigo/10' : ''}`}
             >
-              <span className="text-slate-600">{label}</span>
-              <span className="font-semibold text-slate-800">
+              <span className="text-brand-indigo/70">{label}</span>
+              <span className="font-semibold text-brand-indigo">
                 {value || "Not selected"}
               </span>
             </div>
@@ -61,9 +61,9 @@ const SummaryView = ({
         </div>
         
         {nextSteps && (
-          <div className="mt-8 p-6 bg-emerald-600 rounded-xl text-white text-center">
+          <div className="mt-8 p-6 bg-brand-indigo rounded-xl text-white text-center">
             <p className="text-lg font-semibold mb-2">{nextSteps.title}</p>
-            <p className="text-emerald-100 text-sm">{nextSteps.description}</p>
+            <p className="text-white/80 text-sm">{nextSteps.description}</p>
           </div>
         )}
         
@@ -71,7 +71,7 @@ const SummaryView = ({
           <button
             type="button"
             onClick={onDownloadPDF}
-            className="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+            className="mt-6 w-full bg-brand-yellow hover:bg-brand-yellow/90 text-brand-indigo font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
           >
             <svg
               className="w-5 h-5"
@@ -95,7 +95,7 @@ const SummaryView = ({
           <button
             type="button"
             onClick={onBack}
-            className="mt-4 text-emerald-600 hover:text-emerald-700 font-medium text-sm w-full text-center"
+            className="mt-4 text-brand-blue hover:text-brand-indigo font-medium text-sm w-full text-center"
           >
             {backText}
           </button>
@@ -106,4 +106,3 @@ const SummaryView = ({
 );
 
 export default SummaryView;
-

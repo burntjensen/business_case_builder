@@ -10,7 +10,7 @@ import ArticleFooter from './ArticleFooter';
  * @param {ReactNode} floatingElements - Fixed position elements (like ProgressTracker)
  */
 const ArticleLayout = ({ header, footer, children, floatingElements }) => (
-  <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+  <div className="min-h-screen bg-brand-cream">
     <ArticleHeader {...header} />
     
     <main className="max-w-3xl mx-auto px-6 py-12">
@@ -24,4 +24,3 @@ const ArticleLayout = ({ header, footer, children, floatingElements }) => (
 );
 
 export default ArticleLayout;
-
