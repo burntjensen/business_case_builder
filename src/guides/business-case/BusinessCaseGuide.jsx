@@ -33,6 +33,14 @@ const DownloadIcon = () => (
 
 // Selection options configuration
 const SELECTION_OPTIONS = {
+  employeeSize: [
+    { value: "1-249", label: "1-249 employees", description: "Small organization" },
+    { value: "250-499", label: "250-499 employees", description: "Small to mid-size organization" },
+    { value: "500-999", label: "500-999 employees", description: "Mid-size growing company" },
+    { value: "1000-2499", label: "1,000-2,499 employees", description: "Large organization" },
+    { value: "2500-5000", label: "2,500-5,000 employees", description: "Enterprise-level company" },
+    { value: "5000+", label: "5,000+ employees", description: "Large enterprise organization" },
+  ],
   primaryGoal: [
     { value: "Retention & Turnover", label: "Retention & Turnover", description: "Reduce costly attrition, especially among high performers" },
     { value: "Leadership Pipeline", label: "Leadership Pipeline", description: "Develop emerging leaders for succession planning" },
@@ -75,6 +83,7 @@ const SELECTION_OPTIONS = {
 // Progress tracker fields configuration
 const TRACKER_FIELDS = [
   { key: 'primaryGoal', label: 'Goal' },
+  { key: 'employeeSize', label: 'Company Size' },
   { key: 'programType', label: 'Type' },
   { key: 'audienceSize', label: 'Size' },
   { key: 'matchingApproach', label: 'Matching' },
@@ -85,6 +94,7 @@ const TRACKER_FIELDS = [
 // Initial selections state
 const INITIAL_SELECTIONS = {
   primaryGoal: null,
+  employeeSize: null,
   programType: null,
   audienceSize: null,
   matchingApproach: null,
@@ -109,6 +119,7 @@ function BusinessCaseGuide() {
         description="Here's a snapshot of the program you're building. Our team will reach out with customized recommendations."
         items={[
           { label: 'Primary Goal', value: selections.primaryGoal },
+          { label: 'Company Size', value: selections.employeeSize && `${selections.employeeSize} employees` },
           { label: 'Program Type', value: selections.programType },
           { label: 'Audience Size', value: selections.audienceSize },
           { label: 'Matching Approach', value: selections.matchingApproach },
@@ -250,6 +261,15 @@ function BusinessCaseGuide() {
         </p>
       </div>
 
+      <SelectionGroup
+        number={2}
+        question="How many employees does your organization have?"
+        field="employeeSize"
+        options={SELECTION_OPTIONS.employeeSize}
+        selectedValue={selections.employeeSize}
+        onSelect={handleSelect}
+      />
+
       {/* Section 3 */}
       <SectionDivider number="3" title="Choose Your Program Model" />
 
@@ -288,7 +308,7 @@ function BusinessCaseGuide() {
       </div>
 
       <SelectionGroup
-        number={2}
+        number={3}
         question="Which program model aligns best with your objectives?"
         field="programType"
         options={SELECTION_OPTIONS.programType}
@@ -323,7 +343,7 @@ function BusinessCaseGuide() {
       </div>
 
       <SelectionGroup
-        number={3}
+        number={4}
         question="What's your target audience size for the initial program?"
         field="audienceSize"
         options={SELECTION_OPTIONS.audienceSize}
@@ -366,7 +386,7 @@ function BusinessCaseGuide() {
       </div>
 
       <SelectionGroup
-        number={4}
+        number={5}
         question="How do you want to handle mentor-mentee matching?"
         field="matchingApproach"
         options={SELECTION_OPTIONS.matchingApproach}
@@ -417,7 +437,7 @@ function BusinessCaseGuide() {
       </div>
 
       <SelectionGroup
-        number={5}
+        number={6}
         question="What's your primary measurement focus?"
         field="measurementFocus"
         options={SELECTION_OPTIONS.measurementFocus}
@@ -446,7 +466,7 @@ function BusinessCaseGuide() {
       </div>
 
       <SelectionGroup
-        number={6}
+        number={7}
         question="When are you hoping to launch your program?"
         field="timeline"
         options={SELECTION_OPTIONS.timeline}
