@@ -755,6 +755,13 @@ function App() {
               description="New hire ramp time and performance milestones"
               selected={selections.measurementFocus === "Time to Productivity"}
             />
+            <SelectionCard
+              field="measurementFocus"
+              value="Manager Effectiveness"
+              label="Manager Effectiveness"
+              description="Improve people management skills and effectiveness"
+              selected={selections.measurementFocus === "Manager Effectiveness"}
+            />
           </div>
         </div>
 
