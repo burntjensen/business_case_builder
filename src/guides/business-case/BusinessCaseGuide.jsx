@@ -115,6 +115,16 @@ function BusinessCaseGuide() {
   // Handle PDF download
   const handleDownloadPDF = () => {
     generatePDF(selections, 'mentorship-business-case.pdf');
+    
+    // Push event to GTM data layer
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'pdf_download',
+        pdf_name: 'mentorship-business-case',
+        employee_size: selections.employeeSize,
+        primary_goal: selections.primaryGoal,
+      });
+    }
   };
 
   // Show summary view after submission

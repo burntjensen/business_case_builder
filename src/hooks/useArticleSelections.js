@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { submitToHubSpot } from '../utils/submitToHubSpot';
 
 /**
  * useArticleSelections - Hook for managing article selections state
@@ -21,13 +22,32 @@ const useArticleSelections = (initialState = {}) => {
     setSelections((prev) => ({ ...prev, email }));
   }, []);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     if (selections.email && selections.email.includes('@')) {
+      // Submit to HubSpot (fire-and-forget)
+      submitToHubSpot(selections).then((result) => {
+        if (result.success) {
+          console.log('Successfully submitted to HubSpot');
+          // Push event to GTM data layer
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: 'form_submission',
+              form_name: 'business_case_builder',
+              employee_size: selections.employeeSize,
+              primary_goal: selections.primaryGoal,
+            });
+          }
+        } else {
+          console.error('HubSpot submission failed:', result.error);
+        }
+      });
+      
+      // Update UI immediately (don't wait for HubSpot)
       setSelections((prev) => ({ ...prev, submitted: true }));
       return true;
     }
     return false;
-  }, [selections.email]);
+  }, [selections]);
 
   const handleBack = useCallback(() => {
     setSelections((prev) => ({ ...prev, submitted: false }));
