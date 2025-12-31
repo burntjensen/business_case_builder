@@ -514,7 +514,7 @@ function BusinessCaseGuide() {
         onEmailChange={handleEmailChange}
         onSubmit={handleSubmit}
         secondaryLinks={[
-          { href: "https://www.togetherplatform.com/", text: "Book a 15-min consultation" },
+          { href: "https://www.togetherplatform.com/book-a-demo", text: "Book a 15-min consultation" },
         ]}
       />
     </ArticleLayout>
