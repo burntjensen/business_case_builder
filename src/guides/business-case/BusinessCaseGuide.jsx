@@ -10,7 +10,7 @@ import {
   SummaryView,
 } from '../../components';
 import { useArticleSelections } from '../../hooks';
-import { generatePDF } from '../../utils/generatePDF';
+import { generatePDF } from '../../utils/pdf';
 
 // Icons for header badges
 const ClockIcon = () => (
@@ -113,10 +113,10 @@ function BusinessCaseGuide() {
   } = useArticleSelections(INITIAL_SELECTIONS);
 
   // Handle PDF download
-  const handleDownloadPDF = () => {
-    generatePDF(selections, 'mentorship-business-case.pdf');
+  const handleDownloadPDF = async () => {
+    await generatePDF(selections, 'mentorship-business-case.pdf');
     
-    // Push event to GTM data layer
+    // Push event to GTM data layer (also tracked in generatePDF)
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'pdf_download',
