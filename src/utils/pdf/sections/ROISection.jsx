@@ -36,7 +36,7 @@ const formatCurrency = (amount) => {
 const calculateROI = (employeeSize) => {
   const employees = parseEmployeeSize(employeeSize);
   const turnoverRate = 0.20;
-  const avgSalary = 50000;
+  const avgSalary = 70000;
   const replacementCostMultiplier = 0.75;
   const mentorshipReduction = 0.25;
   
@@ -143,7 +143,7 @@ const ROISection = ({ selections }) => {
         </View>
         <View style={styles.bulletItem}>
           <Text style={styles.bulletPoint}>•</Text>
-          <Text style={styles.bulletText}>$50,000 average salary</Text>
+          <Text style={styles.bulletText}>$70,000 average salary</Text>
         </View>
         <View style={styles.bulletItem}>
           <Text style={styles.bulletPoint}>•</Text>

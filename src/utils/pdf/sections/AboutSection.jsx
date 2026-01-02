@@ -5,7 +5,11 @@ import { styles, BRAND_COLORS } from '../styles';
 const AboutSection = ({ selections }) => {
   const nextSteps = [
     'Share this summary with key stakeholders (CFO, CHRO, department heads)',
-    'Calculate your specific ROI using actual salary and turnover data',
+    <Text>
+      <Link src="https://www.togetherplatform.com/calculate-the-roi-of-mentorship" style={{ color: BRAND_COLORS.indigo, textDecoration: 'underline' }}>
+        Calculate your specific ROI using actual salary and turnover data
+      </Link>
+    </Text>,
     'Identify a pilot group or launch strategy based on your timeline',
     'Schedule stakeholder meetings to build consensus',
     'Request a demo to see platform capabilities in action',
@@ -48,8 +52,8 @@ const AboutSection = ({ selections }) => {
 
       {/* CTAs */}
       <View style={styles.ctaContainer}>
-        <Link src="https://www.togetherplatform.com/request-demo" style={styles.buttonPrimary}>
-          <Text style={styles.buttonPrimaryText}>Request a Demo →</Text>
+        <Link src="https://www.togetherplatform.com/book-a-demo" style={styles.buttonPrimary}>
+          <Text style={styles.buttonPrimaryText}>Request a Demo</Text>
         </Link>
         <Link src="https://www.togetherplatform.com/pricing" style={styles.buttonSecondary}>
           <Text style={styles.buttonSecondaryText}>View Pricing</Text>
