@@ -18,7 +18,7 @@ const ProgressTracker = ({ selections, fields }) => {
       className="bg-white rounded-xl shadow-lg border border-brand-indigo/20 p-4 w-64 hidden md:block"
       style={{
         position: 'fixed',
-        bottom: '48px',
+        bottom: '24px',
         right: '24px',
         zIndex: 9999,
       }}
