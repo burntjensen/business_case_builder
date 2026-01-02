@@ -63,7 +63,7 @@ const AboutSection = ({ selections }) => {
       {/* Contact Info */}
       <View style={{ marginTop: 20 }}>
         <Text style={styles.smallText}>
-          Questions? Email us at hello@togetherplatform.com
+          Questions? Email us at sales@togetherplatform.com
         </Text>
         <Text style={styles.smallText}>
           Visit: www.togetherplatform.com
