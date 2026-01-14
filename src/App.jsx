@@ -51,18 +51,12 @@ function NotFound() {
         <h1 className="text-6xl font-bold text-slate-800 mb-4">404</h1>
         <p className="text-xl text-slate-600 mb-8">Page not found</p>
         <Link 
-          to="/" 
-          className="inline-block px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
+          to="https://www.togetherplatform.com/" 
+          className="block w-full text-center px-6 py-3 text-base font-semibold text-brand-indigo bg-brand-yellow rounded-lg hover:bg-amber-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow"
         >
-          Go to Business Case Guide
+          Go to Home Page
         </Link>
         <div className="mt-4">
-          <Link 
-            to="/placeholder" 
-            className="text-emerald-600 hover:text-emerald-700 font-medium"
-          >
-            Or view the placeholder guide →
-          </Link>
         </div>
       </div>
     </div>
