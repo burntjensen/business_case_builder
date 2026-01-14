@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { BusinessCaseGuide, PlaceholderGuide, TestPage } from './guides';
+import { Navbar } from './components';
 
 /**
  * App - Main router component for the interactive guides application
@@ -17,6 +18,9 @@ import { BusinessCaseGuide, PlaceholderGuide, TestPage } from './guides';
 function App() {
   return (
     <Router>
+      {/* Global Navigation */}
+      <Navbar />
+      
       <Routes>
         {/* Main guide - Business Case Builder */}
         <Route path="/" element={<BusinessCaseGuide />} />

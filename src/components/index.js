@@ -1,3 +1,6 @@
+// Navigation components
+export { Navbar } from './navigation';
+
 // Interactive components
 export { SelectionCard, SelectionGroup, ProgressTracker } from './interactive';
 
