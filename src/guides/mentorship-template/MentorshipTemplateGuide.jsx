@@ -12,6 +12,7 @@ import {
 } from '../../components';
 import { useArticleSelections } from '../../hooks';
 import { useCallback } from 'react';
+import { generateMentorshipPDF } from '../../utils/pdf/mentorship';
 
 // Icons for header badges
 const ClockIcon = () => (
@@ -112,6 +113,25 @@ function MentorshipTemplateGuide() {
     handleSelect(field, newValues);
   }, [selections, handleSelect]);
 
+  // Handle PDF download
+  const handleDownloadPDF = useCallback(async () => {
+    try {
+      await generateMentorshipPDF(selections, 'mentorship-program-template.pdf');
+      
+      // Push event to GTM data layer (also tracked in generateMentorshipPDF)
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'pdf_download',
+          pdf_name: 'mentorship-program-template',
+          program_goal: selections.programGoal,
+          program_format: selections.programFormat,
+        });
+      }
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+    }
+  }, [selections]);
+
   // Format multi-select for display
   const formatEmployeePopulations = (populations) => {
     if (!populations || populations.length === 0) return null;
@@ -124,7 +144,7 @@ function MentorshipTemplateGuide() {
     return (
       <SummaryView
         title="Your Mentorship Program Template"
-        description="Here's a snapshot of the program you're building. Our team will reach out with your customized template and recommendations."
+        description="Here's a snapshot of the program you're building. Download your personalized PDF template below."
         items={[
           { label: 'Primary Goal', value: selections.programGoal },
           { label: 'Employee Populations', value: selections.employeePopulations?.join(', ') || 'Not selected' },
@@ -134,8 +154,9 @@ function MentorshipTemplateGuide() {
         ]}
         nextSteps={{
           title: "What happens next?",
-          description: "Your customized template will include program overview, implementation timeline, promotion plan, success metrics, and feedback framework—ready to present to leadership or use as your launch roadmap."
+          description: "Your customized template includes program overview, implementation timeline, promotion plan, success metrics, and feedback framework—ready to present to leadership or use as your launch roadmap."
         }}
+        onDownloadPDF={handleDownloadPDF}
         onBack={handleBack}
       />
     );
