@@ -2,7 +2,7 @@
 export { Navbar } from './navigation';
 
 // Interactive components
-export { SelectionCard, SelectionGroup, ProgressTracker } from './interactive';
+export { SelectionCard, SelectionGroup, ProgressTracker, MultiSelectCard, MultiSelectGroup } from './interactive';
 
 // Layout components
 export { ArticleLayout, ArticleHeader, ArticleFooter, SectionDivider } from './layout';

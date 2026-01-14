@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { BusinessCaseGuide, PlaceholderGuide, TestPage } from './guides';
+import { BusinessCaseGuide, PlaceholderGuide, TestPage, MentorshipTemplateGuide } from './guides';
 import { Navbar } from './components';
 
 /**
@@ -30,6 +30,9 @@ function App() {
         
         {/* Test page - Dummy content for testing */}
         <Route path="/test" element={<TestPage />} />
+        
+        {/* Mentorship Program Template Guide */}
+        <Route path="/mentorship-program-template" element={<MentorshipTemplateGuide />} />
         
         {/* 404 - Not Found */}
         <Route path="*" element={<NotFound />} />
