@@ -23,7 +23,7 @@ function App() {
       
       <Routes>
         {/* Main guide - Business Case Builder */}
-        <Route path="/" element={<BusinessCaseGuide />} />
+        <Route path="/business-case-builder" element={<BusinessCaseGuide />} />
         
         {/* Placeholder guide - Example for creating new articles */}
         <Route path="/placeholder" element={<PlaceholderGuide />} />
