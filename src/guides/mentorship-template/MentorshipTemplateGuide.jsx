@@ -241,7 +241,7 @@ function MentorshipTemplateGuide() {
         options={SELECTION_OPTIONS.programGoal}
         selectedValue={selections.programGoal}
         onSelect={handleSelect}
-        columns={1}
+        columns={2}
       />
 
       <div className="bg-brand-indigo rounded-xl p-6 my-8 text-white">
@@ -362,7 +362,7 @@ function MentorshipTemplateGuide() {
         options={SELECTION_OPTIONS.mentoringStyle}
         selectedValue={selections.mentoringStyle}
         onSelect={handleSelect}
-        columns={1}
+        columns={2}
       />
 
       <CaseStudy
@@ -422,31 +422,6 @@ function MentorshipTemplateGuide() {
         <p className="text-white/80">
           Employees who participate in formal mentoring programs are promoted five times more often than those who don&apos;t—and 25% of mentees report salary increases directly attributable to their mentoring relationship.
         </p>
-      </div>
-
-      <CaseStudy
-        label="Case Study"
-        title="Avison Young's DEI Mentorship Impact"
-        description="Commercial real estate firm Avison Young launched a mentorship program specifically for women in their organization. By pairing emerging female leaders with senior executives and tracking promotion rates, they demonstrated measurable progress toward gender equity in leadership—while giving participants the sponsorship relationships that drive career advancement."
-        stats={[]}
-      />
-
-      {/* Lead Capture */}
-      <div className="bg-white rounded-2xl border-2 border-brand-yellow p-8 my-12">
-        <h3 className="text-2xl font-bold text-brand-indigo mb-4">Get Your Customized Mentorship Program Template</h3>
-        <p className="text-brand-indigo/70 mb-4">
-          You&apos;ve made the five decisions that define successful mentorship programs. Now let us turn your selections into an actionable plan.
-        </p>
-        <p className="text-brand-indigo/70 mb-6">
-          Your customized template will include:
-        </p>
-        <ul className="text-brand-indigo/70 mb-6 space-y-2">
-          <li>• <strong>Program overview</strong> summarizing your goal, audience, format, style, and matching approach</li>
-          <li>• <strong>Implementation timeline</strong> with launch phases, milestones, and registration windows tailored to your format</li>
-          <li>• <strong>Promotion plan</strong> with pre-launch, registration, and post-launch activities</li>
-          <li>• <strong>Success metrics</strong> aligned to your stated goal—both engagement KPIs and outcome measures</li>
-          <li>• <strong>Feedback framework</strong> with session-level pulses, mid-program check-ins, and completion surveys</li>
-        </ul>
       </div>
 
       <LeadCapture
